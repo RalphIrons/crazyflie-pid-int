@@ -65,10 +65,10 @@ float pidUpdate(PidObject* pid, const float measured, const bool updateError)
    // pid->integ += (pid->error + pid->prevError)/2 * pid->dt;
     
     // Simpson's rule
-    if(pid->error!=0.0 && pid->previousError!=0.0 && pid->prePreviousError!=0.0){
-          pid->integ+=pid->dt/3*(pid->prePreviousError + 4*pid->previousError + pid->error);
-          pid->previousError=0.0;
-          pid->prePreviousError=0.0;
+    if(pid->error!=0.0 && pid->prevError!=0.0 && pid->prePrevError!=0.0){
+          pid->integ+=pid->dt/3*(pid->prePrevError + 4*pid->prevError + pid->error);
+          pid->prevError=0.0;
+          pid->prePrevError=0.0;
     }
 
     if (pid->integ > pid->iLimit)
