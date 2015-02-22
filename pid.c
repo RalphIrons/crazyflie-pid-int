@@ -57,20 +57,25 @@ float pidUpdate(PidObject* pid, const float measured, const bool updateError)
     {
         pid->error = pid->desired - measured;
     }
-     
-   //rectangle rule (default method)
-   //pid->integ += pid->error * pid->dt;
+   //********************************************************************************************
+   // Set technique of integration by uncommenting lines of code
+   // beneath name of technique you wish to use.
+   
+   
+   //rectangle rule:
+             //pid->integ += pid->error * pid->dt;
 
-    //trapezoid rule
-   // pid->integ += (pid->error + pid->prevError)/2 * pid->dt;
+    //trapezoid rule:
+             // pid->integ += (pid->error + pid->prevError)/2 * pid->dt;
     
-    // Simpson's rule
-    if(pid->error!=0.0 && pid->prevError!=0.0 && pid->prePrevError!=0.0){
-          pid->integ+=pid->dt/3*(pid->prePrevError + 4*pid->prevError + pid->error);
-          pid->prevError=0.0;
-          pid->prePrevError=0.0;
-    }
+    // Simpson's rule:
+             if(pid->error!=0.0 && pid->prevError!=0.0 && pid->prePrevError!=0.0){
+                          pid->integ+=pid->dt/3*(pid->prePrevError + 4*pid->prevError + pid->error);
+                          pid->prevError=0.0;
+                          pid->prePrevError=0.0;
+             }
 
+  //***********************************************************************************************
     if (pid->integ > pid->iLimit)
     {
         pid->integ = pid->iLimit;
