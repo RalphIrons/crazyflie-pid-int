@@ -99,6 +99,41 @@ float pidUpdate(PidObject* pid, const float measured, const bool updateError)
     return output;
 }
 
+float pidUpdateYaw(PidObject* pid, const float measured, const bool updateError)
+{
+    float output;
+
+    if (updateError)
+    {
+        pid->error = pid->desired - measured;
+    }
+    
+    pid->integ += pid->error * pid->dt;
+    
+    if (pid->integ > pid->iLimit)
+    {
+        pid->integ = pid->iLimit;
+    }
+    else if (pid->integ < pid->iLimitLow)
+    {
+        pid->integ = pid->iLimitLow;
+    }
+
+    pid->deriv = (pid->error - pid->prevError) / pid->dt;
+
+    pid->outP = pid->kp * pid->error;
+    pid->outI = pid->ki * pid->integ;
+    pid->outD = pid->kd * pid->deriv;
+
+    output = pid->outP + pid->outI + pid->outD;
+    
+    pid->prePrevError = pid->prevError;
+    pid->prevError = pid->error;
+
+    return output;
+}
+
+
 void pidSetIntegralLimit(PidObject* pid, const float limit) {
     pid->iLimit = limit;
 }
