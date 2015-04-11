@@ -1,6 +1,6 @@
 # crazyflie-pid-int
 Trying different techniques for approximating the integral term of the crazyflie quadcopter's pid controller
 
-I would like to compare the currently implemented rectangle rule integration technique with the trapezoid rule and Simpson's rule, with respect to their effects on logged motor thrust and accelerometer data.
+I would like to compare the currently implemented rectangle rule integration technique with the trapezoid rule and Simpson's rule, with respect to their effects on a pilot's ability to hover the crazyflie.
 
-Proposed test set up: suspend crazyflie between two supports using string through built-in expansion holes. Crazyflie rotates only around pitch axis (y axis?). Log data on all motors and accelerometer data on axes x and z. With crazyflie flying level at 60% thrust, lift rear end up until vertical, then release. Do this a total of 4 times. Recharge crazyflie. Flash firmware implementing a new integration technique, then repeat test.
+Proposed test set up: Double blind test with 19 pilots attempting to hover 3 crazyflie quadcopters for a 15 second period. Pilots select the copter which seemed easiest to hover. Pilots do not know which integration technique is being tested, and assistants setting up the copters do not know, either. The experiment is repreated 3 times, with the integration techniques being switched from copter to copter, to contol for hardware differences. A Chi-squared test will test the null hypothesis that there is no difference in pilot preference.
