@@ -111,7 +111,7 @@ void pidSetIntegralLimit(PidObject* pid, const float limit);
 void pidReset(PidObject* pid);
 
 /**
- * Update the PID parameters.
+ * Update the PID parameters for flight variables other than yaw.
  *
  * @param[in] pid         A pointer to the pid object.
  * @param[in] measured    The measured value
@@ -120,6 +120,17 @@ void pidReset(PidObject* pid);
  * @return PID algorithm output
  */
 float pidUpdate(PidObject* pid, const float measured, const bool updateError);
+
+/**
+ * Update the PID parameters for yaw.
+ *
+ * @param[in] pid         A pointer to the pid object.
+ * @param[in] measured    The measured value
+ * @param[in] updateError Set to TRUE if error should be calculated.
+ *                        Set to False if pidSetError() has been used.
+ * @return PID algorithm output
+ */
+float pidUpdateYaw(PidObject* pid, const float measured, const bool updateError);
 
 /**
  * Set a new set point for the PID to track.
