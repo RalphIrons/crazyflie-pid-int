@@ -7,10 +7,8 @@ Proposed test set up: Double blind test with 19 pilots attempting to hover 3 cra
 ****************************************************************************
 The above test was performed during the week of April 6 - 10, 2015, by calculus students at Shenandoah Valley Governor's School. The results of the 57 tials were
 
-rectangle rule: 15
-Simpson's rule: 22
-trapezoid rule: 20
+rectangle rule: 15,  Simpson's rule: 22,  trapezoid rule: 20
 
 The Chi-squared statistic's value of 1.37, df=2, fell well short of the critical value of 5.99 needed to reject the null hypothesis.
 
-Students noted, however, that the Simpson's rule copter could be identified by its yaw rotation, which they conjectured to be the result of the fact that the Simpson's rule pidUpdate changes only on every third call. It was suggested that a separate pidUpdate function be created for yaw, using the default rectangle rule, and that the Simpson's rule method be used with other flight parameters.
+Students noted, however, that the Simpson's rule copter could be identified by its yaw rotation, which they conjectured to be the result of the fact that the Simpson's rule pidUpdate changes only on every third call. It was suggested that a separate pidUpdate function be created for yaw, always using the rectangle rule, and then the tests should then be repeated.
